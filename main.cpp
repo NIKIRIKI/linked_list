@@ -305,6 +305,19 @@ public:
 		return data;
 	}
 
+        int count_occurrences(int value) const {
+    int count = 0;
+    Node* current = head;
+    while (current) {
+        if (current->get_data() == value) {
+            count++;
+        }
+        current = current->get_next_node();
+    }
+    return count;
+	}
+
+
         void remove_duplicates() {
             if (!head) {
                return;
