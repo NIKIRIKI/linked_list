@@ -306,6 +306,61 @@ public:
 
 	}
 
+// Divide the list into two parts at the given index
+Linked_list divide(int index) {
+    Linked_list second_part;
+    if (index < 0 || index >= size) {
+        cerr << "Error: Index is out of range." << endl;
+        return second_part;
+    }
+
+    Node* current = head;
+    for (int i = 0; i < index - 1; i++) {
+        current = current->get_next_node();
+    }
+
+    second_part.head = current->get_next_node();
+    second_part.tail = tail;
+    second_part.size = size - index;
+
+    current->set_next_node(nullptr);
+    tail = current;
+    size = index;
+
+    return second_part;
+}
+
+// Change the value of an element at the given index
+void set_value(int index, int value) {
+    if (index < 0 || index >= size) {
+        cerr << "Error: Index is out of range." << endl;
+        return;
+    }
+
+    Node* current = head;
+    for (int i = 0; i < index; i++) {
+        current = current->get_next_node();
+    }
+    current->set_data(value);
+}
+
+// Overload the [] operator to access elements by index
+int& operator {
+    if (index < 0 || index >= size) {
+        cerr << "Error: Index is out of range." << endl;
+        // Return a reference to a default value (you can choose a different one)
+        static int dummy = -1;
+        return dummy;
+    }
+
+    Node* current = head;
+    for (int i = 0; i < index; i++) {
+        current = current->get_next_node();
+    }
+    return current->get_data();
+}
+
+
 int find_max() const {
     if (!head) {
         cerr << "Error: List is empty." << endl;
