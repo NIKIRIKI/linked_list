@@ -505,6 +505,13 @@ public:
 		return !(*this == list);
 	}
 
+        Linked_list operator+(const Linked_list& other) const {
+            Linked_list result(*this);  
+            result.extend(other);       
+            return result;
+	}
+
+
 	Linked_list copy() const {
 		Linked_list new_list;
 		Node* current = head;
