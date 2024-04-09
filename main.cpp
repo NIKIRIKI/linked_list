@@ -303,7 +303,43 @@ public:
 		int data = head->get_data();
 		remove_head();
 		return data;
+
 	}
+
+int find_max() const {
+    if (!head) {
+        cerr << "Error: List is empty." << endl;
+        return -1;  
+    }
+
+    int max_value = head->get_data();
+    Node* current = head->get_next_node();
+    while (current) {
+        if (current->get_data() > max_value) {
+            max_value = current->get_data();
+        }
+        current = current->get_next_node();
+    }
+    return max_value;
+}
+
+int find_min() const {
+    if (!head) {
+        cerr << "Error: List is empty." << endl;
+        return -1;  
+    }
+
+    int min_value = head->get_data();
+    Node* current = head->get_next_node();
+    while (current) {
+        if (current->get_data() < min_value) {
+            min_value = current->get_data();
+        }
+        current = current->get_next_node();
+    }
+    return min_value;
+}
+
 
         int count_occurrences(int value) const {
     int count = 0;
