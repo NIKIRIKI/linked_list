@@ -305,6 +305,29 @@ public:
 		return data;
 	}
 
+        void remove_duplicates() {
+            if (!head) {
+               return;
+            }
+
+    Node* current = head;
+    while (current) {
+        Node* runner = current;
+        while (runner->get_next_node()) {
+            if (runner->get_next_node()->get_data() == current->get_data()) {
+                Node* duplicate = runner->get_next_node();
+                runner->set_next_node(duplicate->get_next_node());
+                delete duplicate;
+                size--;
+            } else {
+                runner = runner->get_next_node();
+            }
+        }
+        current = current->get_next_node();
+    }
+	}
+
+
 	void print() const {
 		Node* current = head;
 		while (current) {
